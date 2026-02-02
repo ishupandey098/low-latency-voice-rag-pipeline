@@ -335,6 +335,14 @@ speak_text(answer_doc)
 ```
 [▶️ Listen to the result audio](assets/result%20audio.mp3)
 
+### HOW TO RUN
+***Download the sample.wav audio file and manual pdf and open the collab file provided through the link below.
+After opening the collab upload these two file in the google drive in the collab and then run all the cells.
+The important libraries and dependencies will automatically be downloaded and then the result audio will be generated at the end.***
+
+[📓 Open RAG Pipeline Notebook](rag_pipeline.ipynb)
+
+
 ## ⏱️ Latency Measurement (TTFB)
 
 TTFB is measured as the time between receiving the user query and the start of audio playback.
