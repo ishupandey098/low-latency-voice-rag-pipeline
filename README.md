@@ -333,6 +333,8 @@ print(answer_doc)
 
 speak_text(answer_doc)
 ```
+[▶️ Listen to the result audio](assets/result%20audio.mp3)
+
 ## ⏱️ Latency Measurement (TTFB)
 
 TTFB is measured as the time between receiving the user query and the start of audio playback.
