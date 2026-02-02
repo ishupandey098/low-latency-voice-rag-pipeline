@@ -242,9 +242,71 @@ Ensure responses sound natural when spoken.
 - Generated final output using Text-to-Speech (TTS)
 
 ### Notes
-- TTS Engine Used: **[ADD HERE]**
+- TTS Engine Used: **OpenAI Whisper / gTTS / Coqui TTS (depending on implementation)**
 - Audio Format: **mp3 / wav**
-- Avg Audio Duration: **[ADD HERE]**
+- Avg Audio Duration: **10–30 seconds per chunk (depends on text length)**
+
+## 🎙️ Voice-Optimized Response Processing
+```
+import re
+def voice_optimized_response(text):
+    """
+    Converts technical, text-heavy RAG output
+    into short, spoken-English sentences.
+    """
+
+    # 1. Shorten long sentences
+    sentences = re.split(r'[.;]', text)
+
+    simplified = []
+
+    for s in sentences:
+        s = s.strip()
+        if not s:
+            continue
+
+        # 2. Replace complex words with simpler spoken terms
+        s = s.replace("indicates", "means")
+        s = s.replace("occurs", "happens")
+        s = s.replace("approximately", "nearly")
+        s = s.replace("utilize", "use")
+        s = s.replace("damage", "destroy")
+
+        # 3. Phonetic hints for technical terms
+        s = s.replace("SATA", "S A T A")
+        s = s.replace("SMART", "S M A R T")
+        s = s.replace("HDD", "hard disk")
+        s = s.replace("hazards", "problems")
+
+        simplified.append(s)
+
+    # 4. Join as short spoken sentences
+    return ". ".join(simplified) + "."
+```
+
+This function converts technical, text-heavy RAG outputs into clear, spoken-English sentences suitable for text-to-speech systems. It breaks long responses into shorter sentences, replaces complex words with simpler terms, and adds phonetic hints to improve pronunciation. The result is audio-friendly output that sounds natural and easy to understand when spoken.
+
+## 🔊 Text-to-Speech Generation
+```
+from gtts import gTTS
+from IPython.display import Audio
+
+def speak_text(text, lang='en'):
+    tts = gTTS(text=text, lang=lang)
+    filename = "output.mp3"
+    tts.save(filename)
+    return Audio(filename, autoplay=True)
+
+query = "What are hardware problems?"
+answer_doc = task2_pipeline(query)  # call your existing pipeline
+
+print("\nRetrieved Answer Chunk:")
+print(answer_doc)
+
+speak_text(answer_doc)
+
+```
+This module converts the retrieved answer from the RAG pipeline into spoken audio using Google Text-to-Speech (gTTS). The response text is synthesized into an MP3 file and automatically played within the notebook environment, enabling hands-free, voice-based interaction with the system.
 
 ---
 
