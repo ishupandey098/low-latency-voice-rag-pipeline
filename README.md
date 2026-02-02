@@ -342,7 +342,18 @@ The important libraries and dependencies will automatically be downloaded and th
 
 [📓 Open RAG Pipeline Notebook](rag_pipeline.ipynb)
 
+### Future Works
+Enhanced Retrieval Quality
+Future work can focus on improving document retrieval using advanced embedding models and hybrid search techniques for better answer relevance.
 
+Optimized Answer Generation
+The system can be refined with improved prompt design, reranking, and contextual memory to generate more accurate and concise responses.
+
+Deployment and Scalability
+The pipeline can be deployed as a web or cloud-based application with API support, enabling real-time usage and scalability.
+
+Multimodal and Voice Support
+Future extensions may include image/table understanding from PDFs and voice-based interaction for improved accessibility.
 ## ⏱️ Latency Measurement (TTFB)
 
 TTFB is measured as the time between receiving the user query and the start of audio playback.
