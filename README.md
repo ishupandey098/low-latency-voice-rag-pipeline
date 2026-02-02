@@ -74,6 +74,10 @@ def on_partial_text(text):
         threading.Thread(target=prefetch_rag, args=(text,)).start()
 ```
 This function triggers an early RAG prefetch as soon as a partial speech transcript becomes meaningful. Once enough words are detected, a background thread starts retrieval in parallel, reducing overall response latency when the full query is finalized.
+## query audio used-
+
+[Click here to listen](assets/sample.wav)
+
 
 ## 🧠 Contextual Queries Handling
 **“what about the second one?” are handled using lightweight, rule-based query rewriting. The system uses prior conversation context to resolve ambiguous references and rewrites the query before retrieval, ensuring that the results are accurate.**
@@ -297,7 +301,7 @@ def speak_text(text, lang='en'):
     tts.save(filename)
     return Audio(filename, autoplay=True)
 
-query = "What are hardware problems?"
+query = audio_to_query("sample.wav")
 answer_doc = task2_pipeline(query)  # call your existing pipeline
 
 print("\nRetrieved Answer Chunk:")
