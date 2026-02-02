@@ -309,10 +309,28 @@ speak_text(answer_doc)
 This module converts the retrieved answer from the RAG pipeline into spoken audio using Google Text-to-Speech (gTTS). The response text is synthesized into an MP3 file and automatically played within the notebook environment, enabling hands-free, voice-based interaction with the system.
 
 ---
+## Final Result
+```
+!pip install gtts
+from gtts import gTTS
+from IPython.display import Audio
 
+def speak_text(text, lang='en'):
+    tts = gTTS(text=text, lang=lang)
+    filename = "output.mp3"
+    tts.save(filename)
+    return Audio(filename, autoplay=True)
+
+query = audio_to_query("sample.wav")
+answer_doc = task2_pipeline(query)  # call your existing pipeline
+
+print("\nRetrieved Answer Chunk:")
+print(answer_doc)
+
+speak_text(answer_doc)
+```
 ## ⏱️ Latency Measurement (TTFB)
 
 TTFB is measured as the time between receiving the user query and the start of audio playback.
 
-```python
 
